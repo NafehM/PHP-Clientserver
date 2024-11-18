@@ -1,0 +1,30 @@
+<?php require('template/header.phtml') ?>
+
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+    <!--used htmlspecialchars() to avoid $_SERVER['PHP_SELF'] exploits -->
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr><th>Profile Photo</th>
+            <th>Username</th>
+            <th>Full name</th>
+        </tr>
+
+
+        </thead>
+        <tbody>
+        <?php
+        if (isset($view->usersDataSet)) {
+            foreach ($view->usersDataSet as $userData) {
+                echo '<tr>  <td>'.'<img src ="images/'.$userData->getPhotoName().'"alt="no picture"/>'.'</td>
+                        <td>'.'<a href="../singleUser.php?user='. $userData->getUsername().'" >'. $userData->getUsername().'</a></td> 
+                        <td>' . $userData->getFirstName().' '. $userData->getLastName() . '</td> </td>
+                  </tr>';
+            }
+        } ?>
+        </tbody>
+    </table>
+</form>
+
+
+<?php require('template/footer.phtml') ?>

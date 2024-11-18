@@ -1,0 +1,181 @@
+#title {
+    margin-top: 12px;
+    background-color: #fff;
+    color: #000;
+    /*border: 5px solid blue;*/
+
+}
+#menu {
+    border-top: solid 6px #000;
+    background-color: #fff;
+    color: #fff;
+    height: 400px;
+    /*border: 5px solid red;*/
+}
+
+#menu a {
+    background-color: #f00;
+    color: #fff;
+    text-decoration: none;
+    /*display: flex;*/
+    display: block;
+}
+#menu a:hover {
+    background-color: #f00;
+    color: #ddd;
+    text-decoration:underline;
+    display: block;
+}
+
+#content {
+    background-color: #fff;
+    border-top: solid 6px #f00;
+    /*border: 5px solid red;*/
+
+}
+
+#footer {
+    margin_top: 20px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    /*border: 5px solid blue;*/
+}
+.signup-wrapper {
+width: 250px;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+    /*background-color: #89B2EE77;*/
+    /*background-color: #f00;*/
+    padding: 30px;
+    margin: 8% auto 0;
+    /*margin: 8% auto 0;*/
+    text-align: center;
+    /*border: 5px solid blue;*/
+}
+.form-signup {
+    display: block;
+    padding: 5px;
+    /*background-color: #006fff;*/
+    /*border: 5px solid blue;*/
+}
+#input-group {
+    width: 95%;
+    margin: 5px;
+    color: black;
+}
+
+.error-messages {
+    color: #f00;
+}
+.successful {
+    color: #4cae4c;
+}
+.img-circle {
+    width: 180px;
+    height: 185px;
+}
+#profile-img {
+    position: absolute;
+    top: 160px;
+    left: 40px;
+}
+#update_profile {
+    position: relative;
+    top: 150px;
+    cursor: pointer;
+    left: 93px;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.1);
+    transform: translate(-50%, -50%);
+}
+img {
+    width: 100px;
+    height: 100px;
+}
+.btn {
+    max-width: 70px
+
+}
+
+/* Setting the width, height, padding and margin of the map. */
+.map{
+    width: 100%;
+    height: 500px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    margin-top: 0px;
+
+
+}
+
+
+
+#loading{
+
+    opacity: 0%;
+    visibility:   hidden;
+}
+
+/* The css for the drop down menu. */
+.drop-d-menu{
+    position: absolute;
+    min-width: max-content;
+    height: 400px;
+    display: flex;
+    /* border: 1px solid white; */
+    top: 25px;
+    left: 200px;
+    /*right: auto;*/
+    background: red;
+    border-radius: 10px;
+    transition: .4s linear;
+    -webkit-transition: 1s linear;
+    opacity: 0%;
+    visibility: hidden;
+    z-index: 2;
+}
+
+/* Making the drop down menu to be scrollable. */
+ #drop-d-menu #record-display{
+
+    transition: .4s linear;
+    overflow: auto;
+     margin-left: auto;
+     margin-right: auto;
+    min-width: fit-content;
+     background: rgba(19, 15, 15, 0.868);
+
+
+ }
+/* Making the scrollbar to be transparent. */
+#drop-d-menu #record-display::-webkit-scrollbar{
+    width: 10px;
+    background: rgba(184, 184, 184, .3);
+    border-radius: 20px;
+}
+
+/* Making the scrollbar to be transparent. */
+#drop-d-menu #record-display::-webkit-scrollbar-thumb{
+    width: 10px;
+    background: rgba(184, 184, 184, .7);
+    border-radius: 20px;
+}
+
+/* Making the transition of the drop down menu to be smooth. */
+#drop-d-menu #record-display a{
+    transition: .2s linear;
+    border-radius: 10px;
+    min-width: fit-content;
+    background: white;
+    color: black;
+
+
+}
+
+
+
+/* Making the drop down menu to be scrollable. */
+#drop-d-menu #record-display a:hover{
+    box-shadow: 1px 3px 2px 4px #888888da;
+
+}

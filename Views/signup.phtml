@@ -1,0 +1,51 @@
+<?php require('template/header.phtml') ?>
+
+<div class="signup-wrapper">
+    <h3>Signup</h3>
+
+    <?php
+        if (isset($_GET['error'])) {
+            if ($_GET['error'] == "emptyinput") {
+                echo "<p class='error-messages'>Please fill all the fields!</p>";
+            }
+            elseif ($_GET['error'] == "invalidusernameandemail") {
+                echo "<p class='error-messages'>Please choose a valid username & email!</p>";
+
+            }
+            elseif ($_GET['error'] == "invalidusername") {
+                echo "<p class='error-messages'>Please enter a valid username!</p>";
+
+            }
+            elseif ($_GET['error'] == "invalidemail") {
+                echo "<p class='error-messages'>Please enter a valid email!</p>";
+
+            }
+            elseif ($_GET['error'] == "passwordmissmatch") {
+                echo "<p class='error-messages'>Passwords don't match!</p>";
+            }
+            elseif ($_GET['error'] == "userORemailtaken") {
+                echo "<p class='error-messages'>Username or email already taken!</p>";
+            }
+            elseif ($_GET['error'] == "antispam") {
+                echo "<p class='error-messages'>Please check the human verification box!</p>";
+            }
+        }
+        elseif (isset($_GET['signup']) == "successful") {
+            echo "<p class='successful'>Signup was successful!</p>";
+        }
+    ?>
+    <form class="form-signup" method="post" action="/signup.php">
+        <input id="input-group" type="text" name="username" value="<?php if(isset($_GET['username'])){ echo $_GET['username'];} ?>"placeholder="Username..">
+        <input id="input-group" type="text" name="firstName" value="<?php if(isset($_GET['firstName'])){ echo $_GET['firstName'];} ?>" placeholder="First name..">
+        <input id="input-group" type="text" name="lastName" value="<?php if(isset($_GET['lastName'])){ echo $_GET['lastName'];} ?>" placeholder="Last name..">
+        <input id="input-group" type="text" name="email" value="<?php if(isset($_GET['email'])){ echo $_GET['email'];} ?>" placeholder="e-mail..">
+        <input id="input-group" type="password" name="password" placeholder="Password..">
+        <input id="input-group" type="password" name="password-repeat" placeholder="Repeat Password..">
+        <label for="antispam"><b>Human Verification</b></label>
+        <input type="checkbox" name="antispam">
+        <button class="btn btn-default" type="submit" name="sign-upBtn">Sign Up</button>
+    </form>
+</div>
+
+<?php require('template/footer.phtml') ?>
+

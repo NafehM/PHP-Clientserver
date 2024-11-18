@@ -1,0 +1,49 @@
+<?php require('template/header.phtml') ?>
+
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+    <!--used htmlspecialchars() to avoid $_SERVER['PHP_SELF'] exploits -->
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr><th>Profile Photo</th>
+            <th>Username</th>
+            <th>Full name</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <?php
+
+        if (isset($_SESSION['tempSearch'])) // check if the variable is set
+        {
+
+            foreach ($_SESSION['tempSearch'] as $userData) {
+                //old version
+                ?>
+        <tr>
+            <td>
+                <img src="images/<?php echo $userData->getPhotoName(); ?> " alt="picture something" />
+            </td>
+            <td>
+                <?php echo $userData->getUsername(); ?>
+            </td>
+            <td>
+                <?php echo $userData->getFirstName(); ?>
+            </td>
+        </tr> <?php
+
+            }
+        }?>
+        </tbody>
+    </table>
+</form>
+
+<?php require('template/footer.phtml')
+
+//                    '<tr>
+//                    <td><img src ="images/' . $userData->getPhotoName() . '"alt="no picture"/></td>
+//                        <td>' . $userData->getUsername() . '</td>
+//                        <td>' . $userData->getFirstName() . ' ' . $userData->getLastName() . '</td>
+//                  </tr>';
+
+?>

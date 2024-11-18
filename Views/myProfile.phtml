@@ -1,0 +1,40 @@
+<?php require('template/header.phtml') ?>
+
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+    <!--used htmlspecialchars() to avoid $_SERVER['PHP_SELF'] exploits -->
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr><th>Profile Photo</th>
+            <th>Username</th>
+            <th>Full name</th>
+            <th>email</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <?php
+        if (isset($view->userDataSet)) {
+            foreach ($view->userDataSet as $userData) {
+                echo '<tr>  <td>'.'<img src ="images/'.$userData->getPhotoName().'" alt="no picture"/>'.'</td>
+                        <td>' . $userData->getUsername() .'</td>  
+                        <td>' . $userData->getFirstName().' '. $userData->getLastName() . '</td> </td>
+                        <td>'. $userData->getEmail() .'</td> 
+                        <td>'. $userData->getLongitude() .'</td> 
+                        <td>'. $userData->getLatitude() .'</td> 
+                  </tr>';
+            }
+        }
+         ?>
+        </tbody>
+    </table>
+</form>
+<form action="myProfile.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit" name="upload">Upload</button>
+
+</form>
+
+<?php require('template/footer.phtml') ?>

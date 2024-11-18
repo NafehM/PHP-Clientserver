@@ -1,0 +1,43 @@
+<?php require'./Views/template/header.phtml'; ?>
+<?php
+//if action is set
+if(isset($_GET ['action'])){
+    //if action is cancel
+    if($_GET ['action'] == "cancel"){
+        $userName = $_GET['name'];//get username
+        //show cancellation successful message to user
+        echo "<h3>Friend request to '$userName' cancelled successfully.</h3>";
+        //if action equal reject
+    }elseif ($_GET ['action'] == "reject"){
+        $userName = $_GET['name'];//get username
+        //show rejection successful message to user
+        echo "<h3>Friend request from '$userName' Rejected successfully.</h3>";
+        //if action equal accept
+    } elseif ($_GET ['action'] == "accept"){
+        $userName = $_GET['name'];//get username
+        //show acceptance successful message to user
+        echo "<h3>Friend request from '$userName' Accepted successfully.</h3>";
+        //if action equal unfriend
+    }elseif ($_GET ['action'] == "unfriend"){
+        $userName = $_GET['name'];//get username
+        //show unfriend successful message to user
+        echo "<h3>You have unfriended '$userName' successfully.</h3>";
+        //if action equal sendRequest
+    }elseif ($_GET ['action'] == "sendRequest"){
+        $userName = $_GET['name'];//get username
+        //show request sent successful message to user
+        echo "<h3>You have sent request to '$userName' successfully.</h3>";
+    }
+}
+
+
+?>
+<!--this is button will take user back to the my friends page-->
+<form action="../allUsers.php" method="post">
+    <input type="submit" name="back" value="Users' Details">
+</form>
+
+
+
+<?php require('./Views/template/footer.phtml') ?>
+

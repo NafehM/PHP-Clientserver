@@ -1,0 +1,52 @@
+<?php require('template/header.phtml') ?>
+
+    <form action="<?php echo ($_SERVER['PHP_SELF']); ?>" method="post">
+        <br>
+        <table class="table table-hover">
+            <thead>
+            <tr><th>Profile Photo</th>
+                <th>Status</th>
+                <th>Username</th>
+                <th>Full Name</th>
+                <th>email</th>
+
+            </tr>
+
+            </thead>
+            <tbody>
+            <?php
+            if (isset($view->newFriendDataSet)) {
+                foreach ($view->newFriendDataSet as $userData) {
+                    $userID = $userData->getUserId();
+                    $FirstName= $userData->getFirstName();
+                    if ($userID !== $_SESSION['user_id']) {
+                        echo '<tr>
+            <td> <img class="rounded-3 img-thumbnail" src="./images/' . $userData->getPhotoName() . '" alt="No Photo" width="100" height="100
+            "></td>
+            <td> 
+            <form action="./FriendshipController.php" method="post">
+            <input type = "hidden"  name = "userId" value = "'.$userID.'" >
+            <input type = "hidden"  name = "firstName" value = "'.$FirstName.'" >
+            <input class="btn btn-success" type = "submit" name = "add" value = "Add" >
+            </form> 
+            </td> 
+            <td class="d-none d-md-table-cell">' . $userData->getUsername() . '</td> 
+
+               <td>' . $userData->getFirstName() . ' '. $userData->getLastName() . '</td>
+               
+            
+            <td class="d-none d-md-table-cell">' . $userData->getEmail() . '</td> 
+            
+            </tr>';
+
+                    }
+
+
+
+                }
+            } ?>
+            </tbody>
+        </table>
+    </form>
+
+<?php require('template/footer.phtml') ?>

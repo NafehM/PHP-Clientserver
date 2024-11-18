@@ -1,0 +1,124 @@
+<?php require('./Views/template/header.phtml') ?>
+<!--creating a form to show users in a table form-->
+<form action=".<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <!--    table starts here-->
+    <table class="table table-hover">
+        <!--        table head starts here-->
+        <thead>
+        <!--        table row starts here-->
+        <tr>
+            <th>Profile Photo</th>
+            <th>Status</th>
+            <th>Username</th>
+            <th class="d-none d-md-table-cell">Full Name</th>
+            <th class="d-none d-lg-table-cell">Email</th>
+            <th class="d-none d-lg-table-cell">Location</th>
+
+
+
+        </tr>
+        <!--        table row ends  here-->
+        </thead>
+        <!--        table head ends here-->
+
+        <!--        table body starts here-->
+        <tbody>
+        <!--        foreach loop to produce all users row line by line here-->
+        <?php foreach ($view->extendDataSet as $userDataSet) {
+            $userID = $userDataSet->getUserId();
+            $name= $userDataSet->getFirstName();
+            $friendsId = $userDataSet->getFriendsId();
+
+
+
+            //if status in friends table is 1 then request is sent
+            if($userDataSet->getStatus() == 1){
+                //checking if request is send by the current user
+                if($_SESSION['user_id']== $userDataSet->getSendingFrom()){
+
+                    //if current user did not send the friend request it means he received it
+                        echo '<tr>
+            <td> <img class="rounded-3 img-thumbnail" src="./images/' . $userDataSet->getPhotoName() . '" alt="No Photo" width="100" height="100
+            "></td>';
+                    echo '<td>
+            <p>Request sent </p> <br>
+            <form class="w-100" action="./friendshipController.php"  method="post">
+            <input type = "hidden"  name = "userId" value = "'.$userID.'" >
+            <input type = "hidden"  name = "action" value = "cancel" >
+            <input type = "hidden"  name = "friendId" value = "'.$friendsId.'" >
+            <input type = "hidden"  name = "name" value = "'.$name.'" >
+            <input class="btn btn-danger " type = "submit" name = "cancelRequest" value = "Cancel" >
+            </form> 
+            </td> 
+            <td class="d-none d-md-table-cell">' . $userDataSet->getUsername() . '</td> 
+            <td>' . $userDataSet->getFirstName() . ' '. $userDataSet->getLastName() . '</td>
+            <td class="d-none d-lg-table-cell">' . $userDataSet->getEmail() . '</td> 
+            <td></td> 
+           
+            
+            </tr>';
+                    //if current user did not send the friend request it means he received it
+                } else {
+
+
+
+                        echo '<tr> 
+            <td><img class="rounded-3 img-thumbnail" src="./images/' . $userDataSet->getPhotoName() .'" alt="No Photo" width="100" height="100
+            "></td>';
+                    echo
+                        '<td>
+             <form action="./friendshipController.php"  method="post">
+            <input type = "hidden"  name = "friendsId" value = "'.$friendsId.'" >
+            <input type = "hidden"  name = "name" value = "'.$name.'" >
+            <input type = "hidden"  name = "userId" value = "'.$userID.'" >
+            <input type = "submit" class="btn btn-success" name = "acceptRequest" value = "Accept" >
+
+           </form>  <br>
+            <br>
+            <form action="./friendshipController.php" method="post">
+            <input type = "submit" class="btn btn-danger" name = "rejectRequest" value = "Reject" >
+            <input type = "hidden"  name = "rejectedBy" value = "'.$userID.'" >
+            <input type = "hidden"  name = "friendsId" value = "'.$friendsId.'" >
+            </form> 
+            </td> 
+            <td class="d-none d-md-table-cell">' . $userDataSet->getUsername() . '</td> 
+             <td>' . $userDataSet->getFirstName() . ' '. $userDataSet->getLastName() . '</td>
+
+            <td class="d-none d-lg-table-cell">' . $userDataSet->getEmail() . '</td> 
+            <td></td> 
+
+            </tr>';
+                }
+                //if status is 2 it means they both are friends now.
+            }elseif($userDataSet->getStatus() == 2){
+                echo '<tr> 
+            <td><img  class="rounded-3 img-thumbnail" src="./images/' . $userDataSet->getPhotoName() .'" alt="No Photo" width="100" height="100
+            "></td><td>
+            <p>You are Friend </p> <br>
+            <form action="./myFriend.php?action=unfriend&userId=' . $userID . '&friendsId='.$friendsId.'&name='.$name.'" method="post">
+            <input type = "hidden"  name = "friendId" value = "'.$friendsId.'" >
+            <input type = "hidden"  name = "userId" value = "'.$userID.'" >
+            <input type = "hidden"  name = "name" value = "'.$name.'" >
+            <input class=" btn btn-danger" type = "submit" name = "unfriend" value = "Unfriend" >
+            </form> 
+            </td> 
+            <td class="d-none d-md-table-cell">' . $userDataSet->getUsername() . '</td>
+             <td>' . $userDataSet->getFirstName() . ' '. $userDataSet->getLastName() . '</td>
+            <td class="d-none d-lg-table-cell">' . $userDataSet->getEmail() . '</td> 
+            <td class="d-none d-lg-table-cell">' . $userDataSet->getLatitude() . ', '.$userDataSet->getLongitude().'</td> 
+            
+            </tr>';
+
+            }
+
+
+
+        }
+        ?>
+        </tbody>
+    </table>
+</form>
+
+
+
+<?php require('./Views/template/footer.phtml') ?>
